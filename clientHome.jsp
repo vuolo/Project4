@@ -75,16 +75,16 @@
       %>
         <blockquote>
           <code>
-            <table style="background-color: white; color: black;" border="1">
+            <table style="background-color: white; color: black; text-align: center; font-family: Arial, Helvetica, sans-serif;" border="1">
               <thead style="background-color: red; color: black">
                 <% for (int i = 0; i < (Integer)request.getAttribute("results_numColumnNames"); i++) { %>
-                  <td><b><%=request.getAttribute("results_columnName_" + String.valueOf(i + 1))%></b></td>
+                  <td style="padding: 5px;"><b><%=request.getAttribute("results_columnName_" + String.valueOf(i + 1))%></b></td>
                 <% } %>
               </thead>
               <% for (int i = 0; i < (Integer)request.getAttribute("results_numRows"); i++) { %>
                 <tr>
                   <% for (int j = 0; j < (Integer)request.getAttribute("results_numColumnNames"); j++) { %>
-                    <td><%=request.getAttribute("results_rowName_" + String.valueOf(i + 1) + "_" + String.valueOf(j + 1))%></td>
+                    <td style="padding: 5px;"><%=request.getAttribute("results_rowName_" + String.valueOf(i + 1) + "_" + String.valueOf(j + 1))%></td>
                   <% } %>
                 </tr>
               <% } %>
