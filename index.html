@@ -1,0 +1,39 @@
+<!-- 
+  Name: Michael Vuolo
+  Course: CNT 4714 – Fall 2022 – Project Four
+  Assignment Title: A Three-Tier Distributed Web-Based Application
+  Date: December 4, 2022
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Project 4</title>
+      <style>
+        body {
+          background-color: #000000;
+          color: #ffffff;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font-size: 14px;
+        }
+      </style>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <h1 style="color: red">CNT 4714 - Fall 2022 - Project 4</h1>
+      <p>Hi</p>
+      <h3 style="color: aqua">Directory:</h3>
+      <div style="display: flex; flex-direction: row; gap: 10px; justify-content: center; align-items: center;">
+        <form action="clientHome.jsp" method="get">
+          <input type="submit" value="Client">
+        </form>
+        <form action="rootHome.jsp" method="get">
+          <input type="submit" value="Root">
+        </form>
+        <form action="dataentryHome.jsp" method="get">
+          <input type="submit" value="Data Entry">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
