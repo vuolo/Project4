@@ -52,7 +52,7 @@
         <div style="background-color: red; color: white; padding: 0 10px">
           <h4>SQL Database Connection Error:</h4>
           <p>${connectionError}</p>
-        </div>        
+        </div>
       <%
         }
       %>
@@ -63,27 +63,37 @@
         <div style="background-color: red; color: white; padding: 0 10px">
           <h4>IO Error During Attempting Database Connection:</h4>
           <p>${IOError}</p>
-        </div>        
+        </div>
       <%
         }
       %>
-      
-      ${results}
 
-      <!-- <blockquote>
-        <code>
-          <table style="background-color: white; color: black;" border="1">
-            <thead style="background-color: red; color: black">
-              <td><b>${"jnum"}</b></td>
-              <td><b>${"jname"}</b></td>
-            </thead>
-            <tr>
-              <td>${"TODO..."}</td>
-              <td>${"TODO..."}</td>
-            </tr>
-          </table>
-        </code>
-      </blockquote> -->
+      <c:out value = "${results}"/>
+
+      <%
+        if (request.getAttribute("results") != null) { 
+      %>
+        <blockquote>
+          <code>
+            <table style="background-color: white; color: black;" border="1">
+              <thead style="background-color: red; color: black">
+                <% for (int i = 0; i < (Integer)request.getAttribute("results_numColumnNames"); i++) { %>
+                  <td><b><%=request.getAttribute("results_columnName_" + String.valueOf(i + 1))%></b></td>
+                <% } %>
+              </thead>
+              <% for (int i = 0; i < (Integer)request.getAttribute("results_numRows"); i++) { %>
+                <tr>
+                  <% for (int j = 0; j < (Integer)request.getAttribute("results_numColumnNames"); j++) { %>
+                    <td><%=request.getAttribute("results_rowName_" + String.valueOf(i + 1) + "_" + String.valueOf(j + 1))%></td>
+                  <% } %>
+                </tr>
+              <% } %>
+            </table>
+          </code>
+        </blockquote>
+      <%
+        }
+      %>
 
     </div>
   </body>

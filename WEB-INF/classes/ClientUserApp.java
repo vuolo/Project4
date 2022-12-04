@@ -10,6 +10,8 @@ import jakarta.servlet.http.*;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
@@ -58,15 +60,42 @@ public class ClientUserApp extends HttpServlet {
             if (IOError != null)
                   request.setAttribute("IOError", IOError);
 
-            // try {
-            // ResultSet results = statement.executeQuery(query);
-            // // results.next(); // position to first record
+            try {
+                  Boolean hasResults = statement.execute(query);
 
-            // request.setAttribute("results", results);
-            // } catch (SQLException sqlException) {
-            // sqlException.printStackTrace();
-            // request.setAttribute("error", sqlException);
-            // }
+                  // Check whether we did a DML operation
+                  if (!hasResults) {
+                        request.setAttribute("updateCount", statement.getUpdateCount());
+                  } else {
+                        ResultSet results = statement.getResultSet();
+                        request.setAttribute("results", results);
+
+                        // Get the column names
+                        for (int i = 0; i < results.getMetaData().getColumnCount(); i++)
+                              request.setAttribute("results_columnName_" + String.valueOf(i + 1),
+                                          results.getMetaData().getColumnName(i + 1));
+                        request.setAttribute("results_numColumnNames", results.getMetaData().getColumnCount());
+
+                        // Get the rows
+                        List<List<String>> rows = new ArrayList<List<String>>();
+                        while (results.next()) {
+                              List<String> row = new ArrayList<String>();
+                              for (int i = 1; i <= results.getMetaData().getColumnCount(); i++)
+                                    row.add(results.getString(i));
+                              rows.add(row);
+                        }
+
+                        // Update the request with the rows
+                        for (int i = 0; i < rows.size(); i++)
+                              for (int j = 0; j < rows.get(i).size(); j++)
+                                    request.setAttribute("results_rowName_" + String.valueOf(i + 1) + "_"
+                                                + String.valueOf(j + 1), rows.get(i).get(j));
+                        request.setAttribute("results_numRows", rows.size());
+                  }
+            } catch (SQLException sqlException) {
+                  sqlException.printStackTrace();
+                  request.setAttribute("error", sqlException);
+            }
 
             // forward request to JSP page
             request.getRequestDispatcher("/clientHome.jsp").forward(request, response);
