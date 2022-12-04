@@ -16,7 +16,7 @@ import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
-public class ClientUserApp extends HttpServlet {
+public class RootUserApp extends HttpServlet {
 
       private Connection connection;
       private Statement statement;
@@ -31,7 +31,7 @@ public class ClientUserApp extends HttpServlet {
 
             // read the properties file
             try {
-                  filein = new FileInputStream("/Library/Tomcat10027/webapps/Project4/WEB-INF/lib/client.properties");
+                  filein = new FileInputStream("/Library/Tomcat10027/webapps/Project4/WEB-INF/lib/root.properties");
                   properties.load(filein);
                   dataSource = new MysqlDataSource();
                   dataSource.setURL(properties.getProperty("MYSQL_DB_URL"));
@@ -47,7 +47,7 @@ public class ClientUserApp extends HttpServlet {
             }
       }
 
-      // process "GET" requests from clients
+      // process "GET" requests from root user
       @Override
       protected void doGet(HttpServletRequest request, HttpServletResponse response)
                   throws ServletException, IOException {
@@ -100,7 +100,7 @@ public class ClientUserApp extends HttpServlet {
             }
 
             // forward request to JSP page
-            request.getRequestDispatcher("/clientHome.jsp").forward(request, response);
+            request.getRequestDispatcher("/rootHome.jsp").forward(request, response);
       }
 
       // close SQL statements and database when servlet terminates
