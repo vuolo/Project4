@@ -58,7 +58,7 @@ public class ClientUserApp extends HttpServlet {
             if (connectionError != null)
                   request.setAttribute("connectionError", connectionError);
             if (IOError != null)
-                  request.setAttribute("IOError", IOError);
+                  request.setAttribute("ioError", IOError);
 
             try {
                   Boolean hasResults = statement.execute(query);
@@ -94,7 +94,7 @@ public class ClientUserApp extends HttpServlet {
                   }
             } catch (SQLException sqlException) {
                   sqlException.printStackTrace();
-                  request.setAttribute("error", sqlException);
+                  request.setAttribute("queryError", sqlException.getMessage());
             }
 
             // forward request to JSP page

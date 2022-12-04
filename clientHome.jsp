@@ -58,7 +58,7 @@
       %>
 
       <%
-        if (request.getAttribute("IOError") != null) { 
+        if (request.getAttribute("ioError") != null) { 
       %>
         <div style="background-color: red; color: white; padding: 0 10px">
           <h4>IO Error During Attempting Database Connection:</h4>
@@ -68,7 +68,16 @@
         }
       %>
 
-      <c:out value = "${results}"/>
+      <%
+        if (request.getAttribute("queryError") != null) { 
+      %>
+        <div style="background-color: red; color: white; padding: 0 10px">
+          <h4>Error executing the SQL statement:</h4>
+          <p>${queryError}</p>
+        </div>
+      <%
+        }
+      %>
 
       <%
         if (request.getAttribute("results") != null) { 
