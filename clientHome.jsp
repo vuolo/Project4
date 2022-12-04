@@ -46,9 +46,31 @@
       <hr style="width: 95vw">
       <h4>Database Results:</h4>
 
+      <%
+        if (request.getAttribute("connectionError") != null) { 
+      %>
+        <div style="background-color: red; color: white; padding: 0 10px">
+          <h4>SQL Database Connection Error:</h4>
+          <p>${connectionError}</p>
+        </div>        
+      <%
+        }
+      %>
+
+      <%
+        if (request.getAttribute("IOError") != null) { 
+      %>
+        <div style="background-color: red; color: white; padding: 0 10px">
+          <h4>IO Error During Attempting Database Connection:</h4>
+          <p>${IOError}</p>
+        </div>        
+      <%
+        }
+      %>
+      
       ${results}
 
-      <blockquote>
+      <!-- <blockquote>
         <code>
           <table style="background-color: white; color: black;" border="1">
             <thead style="background-color: red; color: black">
@@ -61,7 +83,7 @@
             </tr>
           </table>
         </code>
-      </blockquote>
+      </blockquote> -->
 
     </div>
   </body>
