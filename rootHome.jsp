@@ -22,7 +22,7 @@
      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
  
        <h1 style="color: red">Welcome to the Fall 2022 Project 4 Enterprise Databae System</h1>
-       <h2 style="color: aqua">A Servlet/JSP-based Multi-tiered Enterprise Application Using A Tomcat Container</h2>
+       <h2 style="color: limegreen">A Servlet/JSP-based Multi-tiered Enterprise Application Using A Tomcat Container</h2>
        <hr style="width: 95vw">
  
        <div style="display: flex; flex-direction: column;">
@@ -124,7 +124,6 @@
            var results = document.getElementById("results");
            if (results)
              results.innerHTML = "";
- 
          }
  
          function resetPage() {

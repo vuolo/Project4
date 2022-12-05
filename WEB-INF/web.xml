@@ -30,4 +30,14 @@
     <url-pattern>/RootUserApp</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>Add Supplier Record</servlet-name>
+    <description>Execute an INSERT SQL query to add a new Supplier record.</description>
+    <servlet-class>AddSupplierRecord</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Add Supplier Record</servlet-name>
+    <url-pattern>/AddSupplierRecord</url-pattern>
+  </servlet-mapping>
+
 </web-app>

@@ -124,7 +124,6 @@
           var results = document.getElementById("results");
           if (results)
             results.innerHTML = "";
-
         }
 
         function resetPage() {
