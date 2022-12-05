@@ -16,7 +16,7 @@ import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
-public class AddSupplierRecord extends HttpServlet {
+public class AddJobRecord extends HttpServlet {
 
       private Connection connection;
       private Statement statement;
@@ -53,15 +53,15 @@ public class AddSupplierRecord extends HttpServlet {
       protected void doGet(HttpServletRequest request, HttpServletResponse response)
                   throws ServletException, IOException {
 
-            request.setAttribute("type", "supplier");
+            request.setAttribute("type", "job");
 
-            String snum = request.getParameter("snum");
-            String sname = request.getParameter("sname");
-            String status = request.getParameter("status");
+            String jnum = request.getParameter("jnum");
+            String jname = request.getParameter("jname");
+            String numworkers = request.getParameter("numworkers");
             String city = request.getParameter("city");
-            request.setAttribute("snum", snum);
-            request.setAttribute("sname", sname);
-            request.setAttribute("status", status);
+            request.setAttribute("jnum", jnum);
+            request.setAttribute("jname", jname);
+            request.setAttribute("numworkers", numworkers);
             request.setAttribute("city", city);
 
             if (connectionError != null)
@@ -69,8 +69,8 @@ public class AddSupplierRecord extends HttpServlet {
             if (IOError != null)
                   request.setAttribute("ioError", IOError);
 
-            // Insert the new supplier record into the database
-            String query = "INSERT INTO suppliers VALUES ('" + snum + "', '" + sname + "', " + status + ", '" + city
+            // Insert the new job record into the database
+            String query = "INSERT INTO jobs VALUES ('" + jnum + "', '" + jname + "', " + numworkers + ", '" + city
                         + "')";
 
             if (query != null) {
@@ -81,7 +81,7 @@ public class AddSupplierRecord extends HttpServlet {
                         if (!hasResults) {
                               // request.setAttribute("updateCount", statement.getUpdateCount());
                               request.setAttribute("successMessage",
-                                          "New suppliers record: (" + snum + ", " + sname + ", " + status + ", " + city
+                                          "New jobs record: (" + jnum + ", " + jname + ", " + numworkers + ", " + city
                                                       + ") - successfully entered into the database. "
                                                       + "Business logic not triggered.");
                         }

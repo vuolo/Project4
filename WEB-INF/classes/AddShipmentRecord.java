@@ -16,7 +16,7 @@ import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
-public class AddSupplierRecord extends HttpServlet {
+public class AddShipmentRecord extends HttpServlet {
 
       private Connection connection;
       private Statement statement;
@@ -53,25 +53,25 @@ public class AddSupplierRecord extends HttpServlet {
       protected void doGet(HttpServletRequest request, HttpServletResponse response)
                   throws ServletException, IOException {
 
-            request.setAttribute("type", "supplier");
+            request.setAttribute("type", "shipment");
 
             String snum = request.getParameter("snum");
-            String sname = request.getParameter("sname");
-            String status = request.getParameter("status");
-            String city = request.getParameter("city");
+            String pnum = request.getParameter("pnum");
+            String jnum = request.getParameter("jnum");
+            String quantity = request.getParameter("quantity");
             request.setAttribute("snum", snum);
-            request.setAttribute("sname", sname);
-            request.setAttribute("status", status);
-            request.setAttribute("city", city);
+            request.setAttribute("pnum", pnum);
+            request.setAttribute("jnum", jnum);
+            request.setAttribute("quantity", quantity);
 
             if (connectionError != null)
                   request.setAttribute("connectionError", connectionError);
             if (IOError != null)
                   request.setAttribute("ioError", IOError);
 
-            // Insert the new supplier record into the database
-            String query = "INSERT INTO suppliers VALUES ('" + snum + "', '" + sname + "', " + status + ", '" + city
-                        + "')";
+            // Insert the new shipment record into the database
+            String query = "INSERT INTO shipments VALUES ('" + snum + "', '" + pnum + "', '" + jnum + "', " + quantity
+                        + ")";
 
             if (query != null) {
                   try {
@@ -81,7 +81,7 @@ public class AddSupplierRecord extends HttpServlet {
                         if (!hasResults) {
                               // request.setAttribute("updateCount", statement.getUpdateCount());
                               request.setAttribute("successMessage",
-                                          "New suppliers record: (" + snum + ", " + sname + ", " + status + ", " + city
+                                          "New shipments record: (" + snum + ", " + pnum + ", " + jnum + ", " + quantity
                                                       + ") - successfully entered into the database. "
                                                       + "Business logic not triggered.");
                         }

@@ -16,7 +16,7 @@ import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
-public class AddSupplierRecord extends HttpServlet {
+public class AddPartRecord extends HttpServlet {
 
       private Connection connection;
       private Statement statement;
@@ -53,15 +53,17 @@ public class AddSupplierRecord extends HttpServlet {
       protected void doGet(HttpServletRequest request, HttpServletResponse response)
                   throws ServletException, IOException {
 
-            request.setAttribute("type", "supplier");
+            request.setAttribute("type", "part");
 
-            String snum = request.getParameter("snum");
-            String sname = request.getParameter("sname");
-            String status = request.getParameter("status");
+            String pnum = request.getParameter("pnum");
+            String pname = request.getParameter("pname");
+            String color = request.getParameter("color");
+            String weight = request.getParameter("weight");
             String city = request.getParameter("city");
-            request.setAttribute("snum", snum);
-            request.setAttribute("sname", sname);
-            request.setAttribute("status", status);
+            request.setAttribute("pnum", pnum);
+            request.setAttribute("pname", pname);
+            request.setAttribute("color", color);
+            request.setAttribute("weight", weight);
             request.setAttribute("city", city);
 
             if (connectionError != null)
@@ -69,9 +71,9 @@ public class AddSupplierRecord extends HttpServlet {
             if (IOError != null)
                   request.setAttribute("ioError", IOError);
 
-            // Insert the new supplier record into the database
-            String query = "INSERT INTO suppliers VALUES ('" + snum + "', '" + sname + "', " + status + ", '" + city
-                        + "')";
+            // Insert the new part record into the database
+            String query = "INSERT INTO parts VALUES ('" + pnum + "', '" + pname + "', '" + color + "', " + weight
+                        + ", '" + city + "')";
 
             if (query != null) {
                   try {
@@ -81,7 +83,8 @@ public class AddSupplierRecord extends HttpServlet {
                         if (!hasResults) {
                               // request.setAttribute("updateCount", statement.getUpdateCount());
                               request.setAttribute("successMessage",
-                                          "New suppliers record: (" + snum + ", " + sname + ", " + status + ", " + city
+                                          "New parts record: (" + pnum + ", " + pname + ", " + color + ", " + weight
+                                                      + ", " + city
                                                       + ") - successfully entered into the database. "
                                                       + "Business logic not triggered.");
                         }
