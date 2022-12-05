@@ -72,7 +72,8 @@ public class RootUserApp extends HttpServlet {
                               if (query.toLowerCase().startsWith("insert into shipments")) {
                                     String[] queryParts = query.split(",");
                                     Integer shipmentQuantity = Integer
-                                                .parseInt(queryParts[queryParts.length - 1].replace(")", "").trim());
+                                                .parseInt(queryParts[queryParts.length - 1].replace(")", "")
+                                                            .replace(";", "").trim());
 
                                     if (shipmentQuantity >= 100) {
                                           String select_snums_query = "SELECT DISTINCT snum FROM shipments WHERE quantity >= 100";
