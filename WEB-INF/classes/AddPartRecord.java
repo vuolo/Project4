@@ -10,8 +10,6 @@ import jakarta.servlet.http.*;
 
 import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
@@ -85,8 +83,7 @@ public class AddPartRecord extends HttpServlet {
                               request.setAttribute("successMessage",
                                           "New parts record: (" + pnum + ", " + pname + ", " + color + ", " + weight
                                                       + ", " + city
-                                                      + ") - successfully entered into the database. "
-                                                      + "Business logic not triggered.");
+                                                      + ") - successfully entered into the database.");
                         }
                   } catch (SQLException sqlException) {
                         sqlException.printStackTrace();

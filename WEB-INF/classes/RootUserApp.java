@@ -67,6 +67,36 @@ public class RootUserApp extends HttpServlet {
                         // Check whether we did a DML operation
                         if (!hasResults) {
                               request.setAttribute("updateCount", statement.getUpdateCount());
+
+                              // Business Logic
+                              if (query.toLowerCase().startsWith("insert into shipments")) {
+                                    String[] queryParts = query.split(",");
+                                    Integer shipmentQuantity = Integer
+                                                .parseInt(queryParts[queryParts.length - 1].replace(")", "").trim());
+
+                                    if (shipmentQuantity >= 100) {
+                                          String select_snums_query = "SELECT DISTINCT snum FROM shipments WHERE quantity >= 100";
+                                          Boolean snums_haveResults = statement.execute(select_snums_query);
+                                          if (snums_haveResults) {
+
+                                                ResultSet snum_results = statement.getResultSet();
+
+                                                List<String> snums = new ArrayList<String>();
+                                                while (snum_results.next())
+                                                      snums.add(snum_results.getString("snum"));
+
+                                                // Update all the snums in the suppliers table: add 5 to the status
+                                                for (String snum : snums) {
+                                                      String update_suppliers_query = "UPDATE suppliers SET status = status + 5 WHERE snum = '"
+                                                                  + snum + "'";
+                                                      statement.executeUpdate(update_suppliers_query);
+                                                }
+
+                                                request.setAttribute("snum_count", snums.size());
+                                          }
+                                    }
+                              } else if (query.toLowerCase().startsWith("update shipments")) {
+                              }
                         } else {
                               ResultSet results = statement.getResultSet();
                               request.setAttribute("results", results);

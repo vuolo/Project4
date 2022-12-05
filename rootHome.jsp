@@ -86,8 +86,18 @@
            <div style="background-color: limegreen; color: black; text-align: center; font-weight: bold; padding: 10px">
              <h4>The statement executed successfully:</h4>
              <p>${updateCount} row(s) affected.</p>
-             <h4>Business Logic Detected! - Updating Supplier Status</h4>
-             <h4>Business Logic updated {TODO} supplier status marks</h4>
+             <%
+                if (request.getAttribute("snum_count") == null) {
+              %> 
+                <h4>Business Logic Not Triggered!</h4>
+              <%
+                } else {
+              %>
+                <h4>Business Logic Detected! - Updating Supplier Status</h4>
+                <h4>Business Logic updated ${snum_count} supplier status marks.</h4>
+              <%
+                }
+              %>
            </div>
          <%
            }

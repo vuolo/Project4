@@ -10,8 +10,6 @@ import jakarta.servlet.http.*;
 
 import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
@@ -82,8 +80,7 @@ public class AddSupplierRecord extends HttpServlet {
                               // request.setAttribute("updateCount", statement.getUpdateCount());
                               request.setAttribute("successMessage",
                                           "New suppliers record: (" + snum + ", " + sname + ", " + status + ", " + city
-                                                      + ") - successfully entered into the database. "
-                                                      + "Business logic not triggered.");
+                                                      + ") - successfully entered into the database.");
                         }
                   } catch (SQLException sqlException) {
                         sqlException.printStackTrace();

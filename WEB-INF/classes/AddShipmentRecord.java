@@ -83,7 +83,33 @@ public class AddShipmentRecord extends HttpServlet {
                               request.setAttribute("successMessage",
                                           "New shipments record: (" + snum + ", " + pnum + ", " + jnum + ", " + quantity
                                                       + ") - successfully entered into the database. "
-                                                      + "Business logic not triggered.");
+                                                      + "Business logic "
+                                                      + (Integer.parseInt(quantity) >= 100 ? "" : "not")
+                                                      + " triggered.");
+
+                              // Business Logic: If the quantity of a shipment is greater than or equal to
+                              // 100, then update (increase) supplier statuses by 5
+                              if (Integer.parseInt(quantity) >= 100) {
+                                    String select_snums_query = "SELECT DISTINCT snum FROM shipments WHERE quantity >= 100";
+                                    Boolean snums_haveResults = statement.execute(select_snums_query);
+                                    if (snums_haveResults) {
+
+                                          ResultSet snum_results = statement.getResultSet();
+
+                                          List<String> snums = new ArrayList<String>();
+                                          while (snum_results.next())
+                                                snums.add(snum_results.getString("snum"));
+
+                                          // Update all the snums in the suppliers table: add 5 to the status
+                                          for (String snum_result : snums) {
+                                                String update_suppliers_query = "UPDATE suppliers SET status = status + 5 WHERE snum = '"
+                                                            + snum_result + "'";
+                                                statement.executeUpdate(update_suppliers_query);
+                                          }
+
+                                          request.setAttribute("snum_count", snums.size());
+                                    }
+                              }
                         }
                   } catch (SQLException sqlException) {
                         sqlException.printStackTrace();
