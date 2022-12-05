@@ -192,6 +192,16 @@
         <%
           }
         %>
+
+        <%
+          if (request.getAttribute("successMessage") != null) { 
+        %>
+          <div style="background-color: green; color: white; text-align: center; border: 5px solid yellow; padding: 10px">
+            <p>${successMessage}</p>
+          </div>
+        <%
+          }
+        %>
        </div>
  
        <script>

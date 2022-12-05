@@ -79,7 +79,12 @@ public class AddSupplierRecord extends HttpServlet {
 
                         // Check whether we did a DML operation
                         if (!hasResults) {
-                              request.setAttribute("updateCount", statement.getUpdateCount());
+                              // request.setAttribute("updateCount", statement.getUpdateCount());
+                              request.setAttribute("successMessage",
+                                          "New suppliers record: (" + snum + ", " + sname + ", "
+                                                      + status + ", " + city
+                                                      + ") - successfully entered into the database. "
+                                                      + "Business logic not triggered.");
                         }
                   } catch (SQLException sqlException) {
                         sqlException.printStackTrace();
