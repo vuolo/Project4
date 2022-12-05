@@ -75,7 +75,7 @@ public class AddPartRecord extends HttpServlet {
             String query = "INSERT INTO parts VALUES ('" + pnum + "', '" + pname + "', '" + color + "', " + weight
                         + ", '" + city + "')";
 
-            if (query != null) {
+            if (pnum != null) {
                   try {
                         Boolean hasResults = statement.execute(query);
 

@@ -73,7 +73,7 @@ public class AddShipmentRecord extends HttpServlet {
             String query = "INSERT INTO shipments VALUES ('" + snum + "', '" + pnum + "', '" + jnum + "', " + quantity
                         + ")";
 
-            if (query != null) {
+            if (snum != null) {
                   try {
                         Boolean hasResults = statement.execute(query);
 

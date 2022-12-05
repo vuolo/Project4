@@ -73,7 +73,7 @@ public class AddJobRecord extends HttpServlet {
             String query = "INSERT INTO jobs VALUES ('" + jnum + "', '" + jname + "', " + numworkers + ", '" + city
                         + "')";
 
-            if (query != null) {
+            if (jnum != null) {
                   try {
                         Boolean hasResults = statement.execute(query);
 

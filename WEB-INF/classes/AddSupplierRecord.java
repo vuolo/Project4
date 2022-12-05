@@ -73,7 +73,7 @@ public class AddSupplierRecord extends HttpServlet {
             String query = "INSERT INTO suppliers VALUES ('" + snum + "', '" + sname + "', " + status + ", '" + city
                         + "')";
 
-            if (query != null) {
+            if (snum != null) {
                   try {
                         Boolean hasResults = statement.execute(query);
 

@@ -58,7 +58,7 @@
 
               <div style="display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 10px">
                 <input type="submit" value="Enter Supplier Record Into Database" style="color: green">
-                <input type="button" onclick="clearDataAndResults()" value="Clear Data and Results" style="color: red">
+                <input type="reset" onclick="clearDataAndResults()" value="Clear Data and Results" style="color: red">
               </div>
           </form>
         </fieldset>
@@ -90,7 +90,7 @@
 
               <div style="display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 10px">
                 <input type="submit" value="Enter Part Record Into Database" style="color: green">
-                <input type="button" onclick="clearDataAndResults()" value="Clear Data and Results" style="color: red">
+                <input type="reset" onclick="clearDataAndResults()" value="Clear Data and Results" style="color: red">
               </div>
           </form>
         </fieldset>
@@ -120,7 +120,7 @@
 
               <div style="display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 10px">
                 <input type="submit" value="Enter Job Record Into Database" style="color: green">
-                <input type="button" onclick="clearDataAndResults()" value="Clear Data and Results" style="color: red">
+                <input type="reset" onclick="clearDataAndResults()" value="Clear Data and Results" style="color: red">
               </div>
           </form>
         </fieldset>
@@ -150,7 +150,7 @@
 
               <div style="display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 10px">
                 <input type="submit" value="Enter Shipment Record Into Database" style="color: green">
-                <input type="button" onclick="clearDataAndResults()" value="Clear Data and Results" style="color: red">
+                <input type="reset" onclick="clearDataAndResults()" value="Clear Data and Results" style="color: red">
               </div>
           </form>
         </fieldset>
