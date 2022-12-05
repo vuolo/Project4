@@ -47,10 +47,10 @@
                       <td style="padding: 5px;"><b>city</b></td>
                     </thead>
                       <tr style="background-color: goldenrod;">
-                        <td style="padding: 5px;"><input type="text" name="snum"></td>
-                        <td style="padding: 5px;"><input type="text" name="sname"></td>
-                        <td style="padding: 5px;"><input type="text" name="status"></td>
-                        <td style="padding: 5px;"><input type="text" name="city"></td>
+                        <td style="padding: 5px;"><input type="text" name="snum" value="${type == 'supplier' ? snum : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="sname" value="${type == 'supplier' ? sname : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="status" value="${type == 'supplier' ? status : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="city" value="${type == 'supplier' ? city : ''}"></td>
                       </tr>
                   </table>
                 </code>
@@ -78,11 +78,11 @@
                       <td style="padding: 5px;"><b>city</b></td>
                     </thead>
                       <tr style="background-color: goldenrod;">
-                        <td style="padding: 5px;"><input type="text" name="pnum"></td>
-                        <td style="padding: 5px;"><input type="text" name="pname"></td>
-                        <td style="padding: 5px;"><input type="text" name="color"></td>
-                        <td style="padding: 5px;"><input type="text" name="weight"></td>
-                        <td style="padding: 5px;"><input type="text" name="city"></td>
+                        <td style="padding: 5px;"><input type="text" name="pnum" value="${type == 'part' ? pnum : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="pname" value="${type == 'part' ? pname : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="color" value="${type == 'part' ? color : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="weight" value="${type == 'part' ? weight : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="city" value="${type == 'part' ? city : ''}"></td>
                       </tr>
                   </table>
                 </code>
@@ -109,10 +109,10 @@
                       <td style="padding: 5px;"><b>city</b></td>
                     </thead>
                       <tr style="background-color: goldenrod;">
-                        <td style="padding: 5px;"><input type="text" name="jnum"></td>
-                        <td style="padding: 5px;"><input type="text" name="jname"></td>
-                        <td style="padding: 5px;"><input type="text" name="numworkers"></td>
-                        <td style="padding: 5px;"><input type="text" name="city"></td>
+                        <td style="padding: 5px;"><input type="text" name="jnum" value="${type == 'job' ? jnum : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="jname" value="${type == 'job' ? jname : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="numworkers" value="${type == 'job' ? numworkers : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="city" value="${type == 'job' ? city : ''}"></td>
                       </tr>
                   </table>
                 </code>
@@ -139,10 +139,10 @@
                       <td style="padding: 5px;"><b>quantity</b></td>
                     </thead>
                       <tr style="background-color: goldenrod;">
-                        <td style="padding: 5px;"><input type="text" name="snum"></td>
-                        <td style="padding: 5px;"><input type="text" name="pnum"></td>
-                        <td style="padding: 5px;"><input type="text" name="jnum"></td>
-                        <td style="padding: 5px;"><input type="text" name="quantity"></td>
+                        <td style="padding: 5px;"><input type="text" name="snum" value="${type == 'shipment' ? snum : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="pnum" value="${type == 'shipment' ? pnum : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="jnum" value="${type == 'shipment' ? jnum : ''}"></td>
+                        <td style="padding: 5px;"><input type="text" name="quantity" value="${type == 'shipment' ? quantity : ''}"></td>
                       </tr>
                   </table>
                 </code>
@@ -160,14 +160,10 @@
        <h4>Database Results:</h4>
  
        <div id="results">
-        <div style="background-color: red; color: white; border: 5px solid yellow; padding: 10px">
-            <h4>SQL Database Connection Error:</h4>
-            <p>${connectionError}</p>
-          </div>
         <%
           if (request.getAttribute("connectionError") != null) { 
         %>
-          <div style="background-color: red; color: white; padding: 10px">
+          <div style="background-color: red; color: white; border: 5px solid yellow; padding: 10px">
             <h4>SQL Database Connection Error:</h4>
             <p>${connectionError}</p>
           </div>
@@ -178,7 +174,7 @@
         <%
           if (request.getAttribute("ioError") != null) { 
         %>
-          <div style="background-color: red; color: white; padding: 10px">
+          <div style="background-color: red; color: white; border: 5px solid yellow; padding: 10px">
             <h4>IO Error During Attempting Database Connection:</h4>
             <p>${IOError}</p>
           </div>
@@ -189,7 +185,7 @@
         <%
           if (request.getAttribute("queryError") != null) { 
         %>
-          <div style="background-color: red; color: white; padding: 10px">
+          <div style="background-color: red; color: white; border: 5px solid yellow; padding: 10px">
             <h4>Error executing the SQL statement:</h4>
             <p>${queryError}</p>
           </div>

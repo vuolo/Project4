@@ -53,6 +53,8 @@ public class AddSupplierRecord extends HttpServlet {
       protected void doGet(HttpServletRequest request, HttpServletResponse response)
                   throws ServletException, IOException {
 
+            request.setAttribute("type", "supplier");
+
             String snum = request.getParameter("snum");
             String sname = request.getParameter("sname");
             String status = request.getParameter("status");
@@ -67,8 +69,9 @@ public class AddSupplierRecord extends HttpServlet {
             if (IOError != null)
                   request.setAttribute("ioError", IOError);
 
-            // TODO: insert new supplier record into database
-            String query = "";
+            // Insert the new supplier record into the database
+            String query = "INSERT INTO suppliers VALUES ('" + snum + "', '" + sname + "', " + status + ", '" + city
+                        + "')";
 
             if (query != null) {
                   try {
